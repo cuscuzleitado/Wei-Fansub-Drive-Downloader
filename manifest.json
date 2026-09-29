@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Wei Fansub Drive Downloader",
+  "version": "0.1.0",
+  "description": "Baixa em sequência os episódios do Google Drive das páginas do Wei Fansub.",
+  "permissions": ["downloads", "storage", "tabs"],
+  "host_permissions": [
+    "https://weifansub.com.br/*",
+    "https://drive.google.com/*",
+    "https://drive.usercontent.google.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://weifansub.com.br/*"],
+      "js": ["content-wei.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://drive.google.com/*",
+        "https://drive.usercontent.google.com/*"
+      ],
+      "js": ["content-drive.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
